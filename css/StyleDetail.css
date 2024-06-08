@@ -287,4 +287,5 @@ footer .footernav ul li a:hover{
     font-weight: bolder;
     font-family: 'Secular One';
     letter-spacing: 3px;
+    text-decoration: none;
 }

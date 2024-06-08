@@ -143,7 +143,7 @@ if ($detail_result = $conn->query($sql)) {
                     <tr>
                         <td><?php echo htmlspecialchars($ticket['tipe_ticket']); ?></td>
                         <td><?php echo htmlspecialchars($ticket['stock']); ?></td>
-                        <td><?php echo htmlspecialchars($ticket['harga']); ?></td>
+                        <td><?php echo number_format($ticket['harga'], 0, ',', '.'); ?></td>
                         <td>
                             <input type="number" name="quantity[<?php echo htmlspecialchars($ticket['id_ticket']); ?>]" min="0" max="<?php echo htmlspecialchars($ticket['stock']); ?>" value="0">
                         </td>
