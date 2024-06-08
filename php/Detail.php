@@ -130,7 +130,7 @@ if ($detail_result = $conn->query($sql)) {
         <div class="judul_ticket">
             <h1>Daftar Ticket</h1>
         </div>
-        <form id="ticketForm" onsubmit="return validateTickets()" action="Order.php">
+        <form id="ticketForm" onsubmit="return validateTickets()" method="post" action="Order.php">
             <table class="stock">
                 <tr>
                     <th>Tipe Ticket</th>
@@ -153,13 +153,9 @@ if ($detail_result = $conn->query($sql)) {
                     <tr><td colspan="4">No tickets available</td></tr>
                 <?php endif; ?>
             </table>
-            <?php if (isset($_SESSION['user_id'])): ?>
-                <button type="submit" class="buy-tickets-btn">Buy Tickets Now!</button>
-            <?php else: ?>
-                <button type="button" class="buy-tickets-btn" onclick="alert('Please login to buy tickets.');">Buy Tickets Now!</button>
-            <?php endif; ?>
+            <input type="hidden" name="nama_konser" value="<?php echo htmlspecialchars($concert['nama_konser']); ?>">
+            <button type="submit" class="buy-tickets-btn">Buy Tickets Now!</button>
         </form>
-
         <div class="syarat">
             <h1>SYARAT & KETENTUAN</h1>
             <ol>
@@ -192,18 +188,22 @@ if ($detail_result = $conn->query($sql)) {
 $conn->close();
 ?>
 <script>
-function validateTickets() {
-    var quantities = document.querySelectorAll('input[name^="quantity"]');
-    var total = 0;
-    for (var i = 0; i < quantities.length; i++) {
-        total += parseInt(quantities[i].value) || 0;
+    function validateTickets() {
+        var quantities = document.querySelectorAll('input[name^="quantity"]');
+        var total = 0;
+        for (var i = 0; i < quantities.length; i++) {
+            total += parseInt(quantities[i].value) || 0;
+        }
+        if (total == 0) {
+            alert('Please select at least one ticket.');
+            return false;
+        }
+        if (total > 6) {
+            alert('You can only order up to 6 tickets per transaction.');
+            return false;
+        }
+        return true;
     }
-    if (total > 6) {
-        alert('You can only order up to 6 tickets per transaction.');
-        return false;
-    }
-    return true;
-}
 </script>
 </body>
 </html>
