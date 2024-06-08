@@ -170,6 +170,7 @@ if ($detail_result = $conn->query($sql)) {
     </center>
 </main>
 <footer>
+    <a href="#" class="judul_lagi"><span>TiketQ</span></a>
     <div class="socialIcons">
         <a href=""><i class="fa-brands fa-facebook"></i></a>
         <a href=""><i class="fa-brands fa-instagram"></i></a>
