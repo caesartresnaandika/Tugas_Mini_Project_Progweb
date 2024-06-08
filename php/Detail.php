@@ -1,5 +1,6 @@
 <?php
 include "koneksi.php";
+session_start(); // Tambahkan ini untuk memulai sesi
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -36,6 +37,7 @@ if ($detail_result = $conn->query($sql)) {
     echo "Error fetching detailed concert information: " . $conn->error;
 }
 
+$conn->close();
 ?>
 <!DOCTYPE html>
 <html>
@@ -91,6 +93,25 @@ if ($detail_result = $conn->query($sql)) {
                 </td>
             </tr>
         </table>
+        <div class="deskripsi_konser">
+            <h1>Jadwal Konser</h1>
+            <table class="stock">
+                <tr>
+                    <th>City</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Venue</th>
+                </tr>
+                <?php foreach ($detail_concerts as $detail): ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($detail['city']); ?></td>
+                        <td><?php echo htmlspecialchars($detail['detail_date']); ?></td>
+                        <td><?php echo htmlspecialchars($detail['time']); ?></td>
+                        <td><?php echo htmlspecialchars($detail['venue']); ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+        </div>
         <div class="deskripsi_konser">
             <h1>Tentang Konser</h1>
             <p><?php echo htmlspecialchars($concert['tentang_konser'] ?? ''); ?></p>
@@ -163,9 +184,6 @@ if ($detail_result = $conn->query($sql)) {
         </ul>
     </div>
 </footer>
-<?php
-$conn->close();
-?>
 <script>
 function validateTickets() {
     var quantities = document.querySelectorAll('input[name^="quantity"]');
