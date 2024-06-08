@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="eng">
+    <head>
+        <meta charset="UTF-8">
+        <title>TicketQ</title>
+
+        <!-- link css  -->
+        <link href="https://fonts.cdnfonts.com/css/secular-one" rel="stylesheet">
+        <link rel="stylesheet" href="../css/StyleHome.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    </head>
+    <body>
+        <!-- header section  starts-->
+        <header>
+            <a href="#" class="judul"><span>TiketQ</span></a>
+            <div class="gabung_kanan">
+                <div class="icons">
+                    <a href="#" class="apalah"><img src="../gambar/keranjang.png"></a>
+                </div>
+                <div class="masuk">
+                    <p>Masuk</p>
+                </div>
+            </div>
+        </header>
+        <!-- header section ends  -->
+
+        <!-- ngisi header kosongan -->
+        
+        <!-- paling atas pokoknya muolai  -->
+        <section class="home" id="home">
+            <div class="content">
+                <h3>Hot Deals</h3>
+                <span>Penawaran terbaik kami</span>
+                <p>Jangan sampai kehabisan!</p>
+                <a href="Order.html" class="buttonhome">Beli Sekarang</a>
+            </div>
+        </section>
+
+        <section class="search_bar" id="search_bar">
+            <div class="pencarian">
+                        <div class="tanggal"><input class="input_tanggal" type="date" placeholder="Pilih tanggal ..."> </div>
+                        <div class="paste-button">
+                            <button class="buttonlokasi">Pilih Lokasi ...  <img src="../gambar/lokesyen.png" width="20px" height="25px"></button>
+                            <div class="dropdown-content">
+                              <a id="top" href="#">DKI Jakarta</a>
+                              <a id="middle" href="#">Jawa Tengah</a>
+                              <a id="middle" href="#">Jawa Barat</a>
+                              <a id="bottom" href="#">Lainnya ...</a>
+                            </div>
+                          </div>
+                        <div class="penamaan">
+                        <img src="../gambar/search.png" width="25px" height="25px"> <input class="input" placeholder="Masukkan konser/artis ..." required="" type="text">
+                        </div>
+                        <div class="cari">Search</div>
+            </div>
+        </section>
+
+        <!-- recomendation section starts -->
+        <section class="rekomen" id="rekomen">  
+            <p class="heading">Rekomendasi Terbaik</p>
+            <div class="box-container">
+                <div class="box">
+                    <a href="../php/Detail.php">
+                        <div class="image">
+                            <img src="../gambar/kyuh.jpeg" alt="">
+                            <div class="icons" >
+                                <a href="#" class="detail product"></a>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="../php/Detail.php">
+                        <div class="content">
+                            <div class="lokasi"><img src="../gambar/location.png" width="18px">  Jakarta</div>
+                            <div class="tanggal"><img src="../gambar/date.png" width="16px">  18 May 24</div>
+                            <div class="nama_konser"><h3>KYUHYUN ASIA TOUR 'Restart'</h3></div>
+                            <h4>Mulai dari</h4>
+                            <div class="harga">1.200.000</div>
+                            <div class="ketersediaan">Tersedia</div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="box">
+                    <a href="../php/Detail.php">
+                        <div class="image">
+                            <img src="../gambar/konserIUU.jpg" alt="">
+                            <div class="icons" >
+                                <a href="../php/Detail.php" class="detail product"></a>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="../php/Detail.php">
+                        <div class="content">
+                            <div class="lokasi"><img src="../gambar/location.png" width="18px">Jakarta</div>
+                            <div class="tanggal"><img src="../gambar/date.png" width="16px">27-28 Apr 24</div>
+                            <div class="nama_konser"><h3>IU H.E.R WORLD TOUR</h3></div>
+                            <h4>Mulai dari</h4>
+                            <div class="harga">1.100.000</div>
+                            <div class="ketersediaan">Tersedia</div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="box">
+                    <a href="../php/Detail.php">
+                        <div class="image">
+                            <img src="../gambar/niall.jpeg" alt="">
+                            <div class="icons" >
+                                <a href="#" class="detail product"></a>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="../php/Detail.php">
+                        <div class="content">
+                            <div class="lokasi"><img src="../gambar/location.png" width="18px">Jakarta</div>
+                            <div class="tanggal"><img src="../gambar/date.png" width="16px">11 Mei 24</div>
+                            <div class="nama_konser"><h3>The Show Live On Tour Niall Horan</h3></div>
+                            <h4>Mulai dari</h4>
+                            <div class="harga">1.200.000</div>
+                            <div class="ketersediaan">Tersedia</div>
+                        </div>
+                    </a>
+                </div>
+        </div>
+        </section>
+        <!-- recomendation section ends  -->
+
+        <!-- daftar konser lengkap -->
+        <section class="rekomen" id="rekomen">  
+            <p class="heading">Daftar Lengkap</p>
+            <div class="box-container">
+
+                <div class="box">
+                    <a href="../php/Detail.php">
+                        <div class="image">
+                            <img src="../gambar/konserIUU.jpg" alt="">
+                            <div class="icons" >
+                                <a href="Detail.html" class="detail product"></a>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="../php/Detail.php">
+                        <div class="content">
+                            <div class="lokasi"><img src="../gambar/location.png" width="18px">Jakarta</div>
+                            <div class="tanggal"><img src="../gambar/date.png" width="16px">27-28 Apr 24</div>
+                            <div class="nama_konser"><h3>IU H.E.R WORLD TOUR</h3></div>
+                            <h4>Mulai dari</h4>
+                            <div class="harga">1.100.000</div>
+                            <div class="ketersediaan">Tersedia</div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="../gambar/niall.jpeg" alt="">
+                        <div class="icons" >
+                            <a href="#" class="detail product"></a>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="lokasi"><img src="../gambar/location.png" width="18px">Jakarta</div>
+                        <div class="tanggal"><img src="../gambar/date.png" width="16px">11 Mei 24</div>
+                        <div class="nama_konser"><h3>The Show Live On Tour Niall Horan</h3></div>
+                        <h4>Mulai dari</h4>
+                        <div class="harga">1.200.000</div>
+                        <div class="ketersediaan">Tersedia</div>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="../gambar/ivee.jpeg" alt="">
+                        <div class="icons" >
+                            <a href="#" class="detail product"></a>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="lokasi"><img src="../gambar/location.png" width="18px">  Lokasi</div>
+                        <div class="tanggal"><img src="../gambar/date.png" width="16px">  Tanggalnya</div>
+                        <div class="nama_konser"><h3>IVE THE 1ST WORLD TOUR</h3></div>
+                        <h4>Mulai dari</h4>
+                        <div class="harga">1.225.000</div>
+                        <div class="ketersediaan">Tersedia</div>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="../gambar/amor.jpeg" alt="">
+                        <div class="icons" >
+                            <a href="#" class="detail product"></a>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="lokasi"><img src="../gambar/location.png" width="18px">  Jakarta</div>
+                        <div class="tanggal"><img src="../gambar/date.png" width="16px">  2 Mar 24</div>
+                        <div class="nama_konser"><h3>Novo Amor</h3></div>
+                        <h4>Mulai dari</h4>
+                        <div class="harga">600.000</div>
+                        <div class="ketersediaan">Tersedia</div>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="../gambar/tvxq.jpg" alt="">
+                        <div class="icons" >
+                            <a href="#" class="detail product"></a>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="lokasi"><img src="../gambar/location.png" width="18px">  Jakarta</div>
+                        <div class="tanggal"><img src="../gambar/date.png" width="16px">  20 Apr 24</div>
+                        <div class="nama_konser"><h3>TVXQ</h3></div>
+                        <h4>Mulai dari</h4>
+                        <div class="harga">1.400.000</div>
+                        <div class="ketersediaan">Tersedia</div>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="../gambar/incubus.jpeg" alt="">
+                        <div class="icons" >
+                            <a href="#" class="detail product"></a>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="lokasi"><img src="../gambar/location.png" width="18px">  Jakarta</div>
+                        <div class="tanggal"><img src="../gambar/date.png" width="16px">  23 Apr 24</div>
+                        <div class="nama_konser"><h3>INCUBUS ASIA TOUR 2024</h3></div>
+                        <h4>Mulai dari</h4>
+                        <div class="harga">950.000</div>
+                        <div class="ketersediaan">Tersedia</div>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="../gambar/kyuh.jpeg" alt="">
+                        <div class="icons" >
+                            <a href="#" class="detail product"></a>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="lokasi"><img src="../gambar/location.png" width="18px">  Jakarta</div>
+                        <div class="tanggal"><img src="../gambar/date.png" width="16px">  18 May 24</div>
+                        <div class="nama_konser"><h3>KYUHYUN ASIA TOUR 'Restart'</h3></div>
+                        <h4>Mulai dari</h4>
+                        <div class="harga">1.200.000</div>
+                        <div class="ketersediaan">Tersedia</div>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="../gambar/ed.webp" alt="">
+                        <div class="icons" >
+                            <a href="#" class="detail product"></a>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="lokasi"><img src="../gambar/location.png" width="18px">  Jakarta</div>
+                        <div class="tanggal"><img src="../gambar/date.png" width="16px">  2 Mar 24</div>
+                        <div class="nama_konser"><h3>Ed Sheeran</h3></div>
+                        <h4>Mulai dari</h4>
+                        <div class="harga">900.000</div>
+                        <div class="ketersediaan">Tersedia</div>
+                    </div>
+                </div>
+        </div>
+        </section>
+        
+    </body>
+    <footer>
+        <div class="footerContainer"></div>
+            <div class="judul_lagi">
+                <h1>TiketQ</h1>
+            </div>
+            <div class="socialIcons">
+                <a href=""><i class="fa-brands fa-facebook"></i></a>
+                <a href=""><i class="fa-brands fa-instagram"></i></a>
+                <a href=""><i class="fa-brands fa-twitter"></i></a>
+                <a href=""><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+            <div class="footernav">
+                <ul>
+                    <li><a href="">Home</a></li>
+                    <li><a href="">About</a></li>
+                    <li><a href="">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</html>

@@ -1,0 +1,274 @@
+html{
+    background-image: linear-gradient(#03050F,#050D28,#194D96,#050D28,#03050F);
+}
+main{
+    padding-top: 150px;
+    margin-top: -23px;
+    margin-bottom: -21px;
+    margin-left: -8px;
+    margin-right: -7px;
+    font-family: "Secular One";
+    font-weight: 50px;
+    /* background-color: white; */
+    /* background-image: linear-gradient(#03050F,#050D28,#194D96,#050D28,#03050F); */
+}
+
+header{
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background-image: linear-gradient(#041D3C,#03050F);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content:space-between ;
+    z-index: 1000;
+    box-shadow: 0 .2rem 1rem #03050F;
+}
+header .judul{
+    font-size: 30px;
+    color: white;
+    font-weight: bolder;
+    font-family: 'Secular One';
+    letter-spacing: 3px;
+    text-decoration: none; 
+}
+header .masuk{
+    font-family: 'Secular One';
+    display: inline-block;
+    border-radius: 15px;
+    border: #050D28;
+    background: #E7F2FF;
+    color: #041D3C;
+    padding: 10px 30px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+header .icons {
+    margin-right: 10px;
+    color: #FBFBFB;
+}
+
+header .icons img{
+    width: 35px;
+    height: 35px;
+}
+ul.breadcrumb {
+    margin-top: -70px;
+    display: block;
+    width: 100%;
+    position: fixed;
+    font-family: "Secular One";
+    color: white;
+    padding: 10px 16px; 
+    list-style: none;
+    background-color: black;
+}
+ul.breadcrumb li {
+    display: inline;
+    font-size: 18px;
+}
+ul.breadcrumb li+li:before {
+    padding: 8px;
+    color: white;
+    content: "/\00a0";
+}
+ul.breadcrumb li a {
+    color: white;
+    text-decoration: none;
+}
+ul.breadcrumb li a:hover {
+    color: #01447e;
+}
+#gambar {
+    margin-left: 30px;
+    margin-top: 25px;
+    width: 800px;
+    height: 450px;
+}
+.detail {
+    color: white;
+    margin: 10px;
+    padding: 20px;
+    padding-top: 40px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 38px;
+}
+.detail p {
+    margin: 20px;
+}
+ul.detail_konser{
+    font-size: 21px;
+    line-height: 200%;
+    list-style-type: none;
+}
+.judul_konser {
+    font-size: 1px;
+    color: white;
+    font-weight: bold;
+    font-size: 40px;
+}
+.deskripsi_konser {
+    color: white;
+    padding-right: 30px;
+    padding-left: 30px;
+    text-align: left;
+}
+.jadwal_konser{
+    color: white;
+    padding-right: 30px;
+    padding-left: 30px;
+    text-align: left;
+}
+.deskripsi_konser p{
+    font-size: medium;
+    color: black;
+    background: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 38px;
+    padding: 30px;
+}
+#gambar_seat {
+    width: 800px;
+    height: 1000px;
+}
+.seating_plan {
+    color: white;
+    padding-right: 30px;
+    padding-left: 30px;
+}
+.seating_plan h1 {
+    text-align: left;
+}
+.judul_ticket {
+    color: white;
+    padding-right: 30px;
+    padding-left: 30px;
+    text-align: left;
+}
+
+.stock th, .stock td {
+color: white;
+padding: 10px ;
+border: 1px solid #ddd;
+text-align: center;
+}
+.syarat h1{
+    color: white;
+    padding-right: 30px;
+    padding-left: 30px;
+    text-align: left;
+}
+.syarat h2{
+    color: white;
+    font-size: medium;
+    padding-right: 30px;
+    padding-left: 30px;
+    text-align: left;
+}
+.syarat ol{
+    color: white;
+    line-height: 30px;
+    font-size: large;
+    padding-right: 70px;
+    padding-left: 70px;
+    text-align: left;
+}
+#text_merah {
+    color: red;
+}
+#text_bold {
+    font-weight: bold;
+}
+footer{
+    /* background-image: linear-gradient(#03050F,#041D3C); */
+    padding: 2rem;
+}
+
+
+footer .socialIcons{
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+footer .socialIcons a{
+    text-decoration: none;
+    padding: 10px;
+    /* margin-top: 20px; */
+    background-color: white;
+    margin: 20px;
+    border-radius: 30%;
+    margin-top: -5px;
+
+}
+
+footer .socialIcons a i{
+    font-size: 30px;
+    color: black;
+    opacity: 0.9;
+}
+
+footer .socialIcons a:hover{
+    background-color: #03050F;
+    transition: 0.5s;
+}
+
+footer .socialIcons a:hover i{
+    background-color: white;
+    transition: 1s;
+}
+
+footer .footernav{
+    margin: 5px ;
+    font-size: 15px;
+    font-weight: lighter;
+}
+
+footer .footernav ul{
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    padding-bottom: 30px;
+    padding-top: 10px;
+}
+
+footer .footernav ul li a{
+    color: white;
+    margin: 5px 25px 25px 25px;
+    text-decoration: none;
+    font-size: 15px;
+    opacity: 0.7;
+    transition: 0.5s;
+    letter-spacing: 1px;
+    font-weight: lighter;
+}
+
+footer .footernav ul li a:hover{
+    opacity: 1;
+}
+
+@media (max-width: 700px){
+    .footernav ul{
+        flex-direction: clomun;
+    }
+    .footernav ul li{
+        width: 100%;
+        text-align: center;
+        margin: 10px;
+    }
+}
+
+
+.buy-tickets-btn{
+    margin: 2rem;
+    color: black;
+    padding : 10px;
+    text-align: left;
+    border-radius: 10px;
+    position: relative;
+    left : 150px;
+
+}

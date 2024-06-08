@@ -1,0 +1,5 @@
+Consistency : didalam website kami memiliki bentuk yang konsisten sehingga dapat mencegah user mangalami kesulitasn pada saat berpindah page/task yang mereka mau Contohnya seperti lokasi footer dan dan header yang sama, breadcrumb pada halaman detail dan order memiliki lokasi yang sama
+
+Visibility :didalam website kami terdapat elemen penting yang terlihat jelas dan mudah di temukan oleh user, seperti tombol pesan sekarang dan bayar sekarang memiliki contrast warna yang jelas sehingga user mengetahui tombol tersebut dapat di pilih
+
+Breadcrumb : pada website kami breadcrumb berfungsi untuk membantu pengguna melacak lokasi mereka dalam situs web atau aplikasi. Breadcrumb biasanya ditampilkan di bagian atas halaman dan terdiri dari serangkaian tautan yang menunjukkan jalur hierarki dari halaman awal ke halaman saat ini

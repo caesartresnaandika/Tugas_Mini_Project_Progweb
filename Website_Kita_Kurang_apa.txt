@@ -1,0 +1,35 @@
+1. Halaman Home :
+	Session
+	Dari Tombol Login jadi Side bar (nunjukin akun yang udah masuk, logout)
+	Animasi kalau sempat (Pakai JS)
+	Keranjang
+	Nyambung ke halaman about 
+	Nyambung ke halaman keranjang
+	Nyambung ke contact us
+	Nyambung ke halaman login/Signup belom
+	Search bar tanggal, nama artis, 
+	Punya Amel di full Bahasa Indonesia
+	Kalau search bisa ngurutin konser yang paling baru
+	
+
+2. Halaman Detail :
+	Navigasi bar nya
+	Footer nya di cek lagi semua
+	Tabel daftar tiket mau diperbaiki
+	Tombolnya juga ( kalau belum login tombolnya ngarahin blg harus login sek )
+	Punya dika di full Bahasa Indonesia
+
+3. Halaman pemesanan:
+	Kalau submit di DB jumlah tiketnya berkurang
+	Di form jadinya nama lengkap, email, nomor telpon
+	Dinamisnya belom pokoknya semua
+
+4. Database
+	di invoice alamatnya kota negara hapus
+	cek tipe data nya date, time jadi time
+
+5. Halaman about us
+6. Halaman Contact Us
+7. Keranjang amel
+	
+	
