@@ -29,8 +29,8 @@ foreach ($cart as $id_ticket => $quantity) {
         echo "Error fetching tickets: " . $conn->error;
     }
 }
-?>
 
+?>
 <!DOCTYPE html>
 <html>
 <head>

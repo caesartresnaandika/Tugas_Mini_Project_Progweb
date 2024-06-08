@@ -375,4 +375,44 @@ footer .footernav ul li a:hover{
         text-align: center;
         margin: 10px;
     }
-} 
+}
+
+/* Add these styles to your existing CSS */
+
+/* Detail Tiket section */
+.infoTiket {
+    color: black;
+    background-color: rgb(251, 244, 234);
+    padding: 30px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    margin-bottom: 50px;
+}
+
+.infoTiket div {
+    margin-bottom: 15px;
+}
+
+.infoTiket div input {
+    width: 100%;
+    height: 40px;
+    border: 0.5px solid #BCBCBC;
+    border-radius: 10px;
+    padding-left: 10px;
+}
+
+.infoTiket div input[type="checkbox"] {
+    width: auto;
+    height: auto;
+    margin-right: 10px;
+}
+
+.jumlahTiket {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.tiket1 {
+    margin-bottom: 15px;
+}

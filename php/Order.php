@@ -104,8 +104,10 @@ foreach ($quantity as $id_ticket => $qty) {
                         <?php for ($i = 0; $i < $ticket['qty']; $i++): ?>
                             <p class="jumlahTiket">Tiket <?php echo $i + 1; ?> (<?php echo htmlspecialchars($ticket['tipe_ticket']); ?>)</p>
                             <div class="tiket1">
-                                <label for="dataPemesan_<?php echo $ticket['id_ticket']; ?>_<?php echo $i; ?>">Jika tiket sama dengan Pemesan</label>
-                                <input type="checkbox" id="dataPemesan_<?php echo $ticket['id_ticket']; ?>_<?php echo $i; ?>" name="dataPemesan[<?php echo $ticket['id_ticket']; ?>][<?php echo $i; ?>]" value="1">
+                                <?php if ($i == 0): ?>
+                                    <label for="dataPemesan_<?php echo $ticket['id_ticket']; ?>_<?php echo $i; ?>">Jika tiket sama dengan Pemesan</label>
+                                    <input type="checkbox" id="dataPemesan_<?php echo $ticket['id_ticket']; ?>_<?php echo $i; ?>" name="dataPemesan[<?php echo $ticket['id_ticket']; ?>][<?php echo $i; ?>]" value="1">
+                                <?php endif; ?>
                             </div>
                             <div>
                                 <input type="text" id="namaDepan_<?php echo $ticket['id_ticket']; ?>_<?php echo $i; ?>" name="namaDepanTiket[<?php echo $ticket['id_ticket']; ?>][<?php echo $i; ?>]" required placeholder="Nama Depan *">
