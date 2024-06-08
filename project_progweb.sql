@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 08, 2024 at 09:24 AM
+-- Generation Time: Jun 08, 2024 at 09:30 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -42,7 +42,13 @@ CREATE TABLE `detail_konser` (
 
 INSERT INTO `detail_konser` (`id_detail`, `city`, `detail_date`, `time`, `venue`, `id_artis`) VALUES
 (1, 'Jakarta', '2024-04-27', '14:00:00', 'ICE BSD HALL 5-6', 1),
-(2, 'Jakarta', '2024-04-28', '14:00:00', 'ICE BSD HALL 5-6', 1);
+(2, 'Jakarta', '2024-04-28', '14:00:00', 'ICE BSD HALL 5-6', 1),
+(3, 'Jakarta', '2024-04-28', '14:00:00', 'ICE BSD HALL 5-6', 2),
+(4, 'Jakarta', '2024-04-28', '14:00:00', 'ICE BSD HALL 5-6', 3),
+(5, 'Jakarta', '2024-04-28', '14:00:00', 'ICE BSD HALL 5-6', 4),
+(6, 'Jakarta', '2024-04-28', '14:00:00', 'ICE BSD HALL 5-6', 5),
+(7, 'Jakarta', '2024-04-28', '14:00:00', 'ICE BSD HALL 5-6', 6),
+(8, 'Jakarta', '2024-04-28', '14:00:00', 'ICE BSD HALL 5-6', 7);
 
 -- --------------------------------------------------------
 
@@ -221,7 +227,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `detail_konser`
 --
 ALTER TABLE `detail_konser`
-  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `invoice`
