@@ -28,7 +28,7 @@
                 </div>
             </form>
             <div class="icons">
-                <a href="#" class="apalah"><img src="../gambar/keranjang.png"></a>
+                <a href="Keranjang.php" class="apalah"><img src="../gambar/keranjang.png"></a>
             </div>
             <div class="masuk">
                 <p>Masuk</p>

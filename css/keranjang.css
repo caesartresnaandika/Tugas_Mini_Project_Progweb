@@ -1,0 +1,217 @@
+/* General and Body Styles */
+html {
+    background-image: linear-gradient(#03050F,#050D28,#194D96,#050D28,#03050F);
+}
+
+main {
+    padding-top: 150px;
+    margin: -23px -7px -21px -8px;
+    font-family: "Secular One";
+    font-weight: 50px;
+}
+
+/* Header Styles */
+header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background-image: linear-gradient(#041D3C,#03050F);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    box-shadow: 0 .2rem 1rem #03050F;
+}
+
+header .judul {
+    font-size: 30px;
+    color: white;
+    font-weight: bolder;
+    font-family: 'Secular One';
+    letter-spacing: 3px;
+    text-decoration: none; 
+}
+
+header .masuk {
+    font-family: 'Secular One';
+    display: inline-block;
+    border-radius: 15px;
+    border: #050D28;
+    background: #E7F2FF;
+    color: #041D3C;
+    padding: 10px 30px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+header .icons {
+    margin-right: 10px;
+    color: #FBFBFB;
+}
+
+header .icons img {
+    width: 35px;
+    height: 35px;
+}
+
+/* Breadcrumb Styles */
+ul.breadcrumb {
+    display: flex;
+    width: 100%;
+    position: fixed;
+    top: 50px;
+    font-family: "Secular One";
+    color: white;
+    padding: 10px 16px; 
+    list-style: none;
+    background-color: black;
+}
+
+ul.breadcrumb li {
+    display: inline;
+    font-size: 18px;
+}
+
+ul.breadcrumb li+li:before {
+    padding: 8px;
+    color: white;
+    content: "/\00a0";
+}
+
+ul.breadcrumb li a {
+    color: white;
+    text-decoration: none;
+}
+
+ul.breadcrumb li a:hover {
+    color: #01447e;
+}
+
+/* Cart Table Styles */
+.cart-table {
+    width: 90%;
+    margin: 50px auto;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.cart-table th, .cart-table td {
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #ddd;
+    font-size: 18px;
+}
+
+.cart-table th {
+    background-color: #041D3C;
+    color: white;
+}
+
+.cart-table td {
+    color: #041D3C;
+}
+
+.cart-table img {
+    width: 100px;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Footer Styles */
+footer {
+    padding: 2rem;
+}
+
+footer .socialIcons {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+footer .socialIcons a {
+    text-decoration: none;
+    padding: 10px;
+    background-color: white;
+    margin: 20px;
+    border-radius: 30%;
+    margin-top: -5px;
+}
+
+footer .socialIcons a i {
+    font-size: 30px;
+    color: black;
+    opacity: 0.9;
+}
+
+footer .socialIcons a:hover {
+    background-color: #03050F;
+    transition: 0.5s;
+}
+
+footer .socialIcons a:hover i {
+    background-color: white;
+    transition: 1s;
+}
+
+footer .footernav {
+    margin: 5px;
+    font-size: 15px;
+    font-weight: lighter;
+}
+
+footer .footernav ul {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    padding-bottom: 30px;
+    padding-top: 10px;
+}
+
+footer .footernav ul li a {
+    color: white;
+    margin: 5px 25px 25px 25px;
+    text-decoration: none;
+    font-size: 15px;
+    opacity: 0.7;
+    transition: 0.5s;
+    letter-spacing: 1px;
+    font-weight: lighter;
+}
+
+footer .footernav ul li a:hover {
+    opacity: 1;
+}
+
+@media (max-width: 700px) {
+    .footernav ul {
+        flex-direction: column;
+    }
+    .footernav ul li {
+        width: 100%;
+        text-align: center;
+        margin: 10px;
+    }
+}
+
+/* Cart Button Styles */
+.cart-button {
+    background-color: #041D3C;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 20px;
+    transition: background-color 0.3s;
+}
+
+.cart-button:hover {
+    background-color: #050D28;
+}
