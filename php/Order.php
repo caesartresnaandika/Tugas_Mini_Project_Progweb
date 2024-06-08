@@ -79,7 +79,7 @@ foreach ($quantity as $id_ticket => $qty) {
             </div>
         </section>
         
-        <form action="post">
+        <form method="post" action="">
             <section class="isiForm">
                 <h2 class="judulTiapForm">Detail Pemesanan</h2>
                 <p class="informasiForm">Isi formulir dengan benar karena e-tiket akan dikirim melalui e-mail sesuai detail pemesanan</p>
@@ -145,3 +145,42 @@ foreach ($quantity as $id_ticket => $qty) {
     </footer>
 </body>
 </html>
+
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Ambil data dari form
+    $namaDepan = $_POST['namaDepan'] ?? '';
+    $namaBelakang = $_POST['namaBelakang'] ?? '';
+    $email = $_POST['email'] ?? '';
+    $nomorTelepon = $_POST['nomorTelepon'] ?? '';
+
+    // Ambil detail tiket dari form
+    $namaDepanTiket = $_POST['namaDepanTiket'] ?? [];
+    $namaBelakangTiket = $_POST['namaBelakangTiket'] ?? [];
+    $emailTiket = $_POST['emailTiket'] ?? [];
+    $nomorTeleponTiket = $_POST['nomorTeleponTiket'] ?? [];
+
+    // Insert data ke dalam tabel keranjang
+    $stmt = $conn->prepare("INSERT INTO keranjang (id_user, nama_konser, tipe_ticket, qty, harga, nama_depan, nama_belakang, email, nomor_telepon) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    foreach ($tickets as $ticket) {
+        for ($i = 0; $i < $ticket['qty']; $i++) {
+            $id_user = 1; // Sesuaikan dengan ID pengguna yang sebenarnya
+            $tipe_ticket = $ticket['tipe_ticket'];
+            $qty = 1;
+            $harga = $ticket['harga'];
+            $nama_depan_tiket = $namaDepanTiket[$ticket['id_ticket']][$i];
+            $nama_belakang_tiket = $namaBelakangTiket[$ticket['id_ticket']][$i];
+            $email_tiket = $emailTiket[$ticket['id_ticket']][$i];
+            $nomor_telepon_tiket = $nomorTeleponTiket[$ticket['id_ticket']][$i];
+            
+            $stmt->bind_param("isssissis", $id_user, $nama_konser, $tipe_ticket, $qty, $harga, $nama_depan_tiket, $nama_belakang_tiket, $email_tiket, $nomor_telepon_tiket);
+            $stmt->execute();
+        }
+    }
+    $stmt->close();
+
+    // Redirect ke halaman sukses
+    header("Location: sukses.php");
+    exit;
+}
+?>
