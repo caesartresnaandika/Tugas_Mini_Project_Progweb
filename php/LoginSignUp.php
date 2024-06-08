@@ -33,69 +33,54 @@
 </body>
 <?php
 include "koneksi.php";
-session_start(); // Memulai sesi di awal
+session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['tombolLogin'])) {
         $username = $_POST['username'];
         $password = $_POST['password'];
 
-        // Query untuk mencari data user berdasarkan username
         $query = "SELECT * FROM user WHERE username = '$username'";
         $result = mysqli_query($conn, $query);
 
         if (mysqli_num_rows($result) == 1) {
-            // Username ditemukan, cek password
             $user = mysqli_fetch_assoc($result);
             if ($password === $user['password']) {
-                // Password benar, proses login
                 $_SESSION['username'] = $username;
-                // Redirect ke halaman utama atau halaman setelah login
+                $_SESSION['user_id'] = $user['id_user']; // Assuming user table has an id_user column
                 echo "<script>alert('Login berhasil.');
                     window.location.href='Home2.php';
                     </script>";
-                exit(); // Penting untuk menghentikan eksekusi PHP setelah redirect
+                exit();
             } else {
-                // Password salah
                 echo "<script>alert('Password salah.');</script>";
             }
         } else {
-            // Username tidak ditemukan
             echo "<script>alert('Username tidak ditemukan.');</script>";
         }
     } elseif (isset($_POST['tombolSignUp'])) {
-        // Ambil data dari formulir sign-up
         $username = $_POST['username'];
         $phone = $_POST['noTelepon'];
         $password = $_POST['password'];
         $confirmPassword = $_POST['confirmPassword'];
 
-        // Query untuk memeriksa apakah username sudah ada dalam database
         $checkUsernameQuery = "SELECT * FROM user WHERE username = '$username'";
         $checkUsernameResult = mysqli_query($conn, $checkUsernameQuery);
 
         if (mysqli_num_rows($checkUsernameResult) > 0) {
-            // Jika username sudah ada dalam database
             echo "<script>alert('Username sudah digunakan. Silakan gunakan username lain.');</script>";
         } else {
-            // Jika username belum ada dalam database
-            // validasi password dan konfirmasi password cocok
             if ($password === $confirmPassword) {
-                // Jika password dan konfirmasi password cocok
-                // //proses penyimpanan data ke dalam database
                 $insertQuery = "INSERT INTO user (username, no_telepon, password) VALUES ('$username', '$phone', '$confirmPassword')";
                 if (mysqli_query($conn, $insertQuery)) {
-                    // Jika data berhasil disimpan ke dalam database
                     echo "<script>alert('Sign-up berhasil. Anda dapat melakukan login sekarang.');
                     window.location.href='Home2.php';
                     </script>";
                     exit();
                 } else {
-                    // Jika terjadi kesalahan saat menyimpan data ke dalam database
                     echo "<script>alert('Gagal menyimpan data, silahkan coba lagi.');</script>";
                 }
             } else {
-                // Jika password dan konfirmasi password tidak cocok
                 echo "<script>alert('Password dan konfirmasi password tidak cocok.');</script>";
             }
         }

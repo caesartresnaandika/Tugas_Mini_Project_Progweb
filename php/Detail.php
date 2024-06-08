@@ -1,6 +1,13 @@
 <?php
-include "koneksi.php";
-session_start(); // Tambahkan ini untuk memulai sesi
+include "../php/koneksi.php";
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    echo "<script>alert('Please login to access this page.');
+    window.location.href='LoginSignUp.php';
+    </script>";
+    exit();
+}
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -8,7 +15,6 @@ if ($conn->connect_error) {
 
 $id_artis = isset($_GET['id_artis']) ? (int)$_GET['id_artis'] : 0;
 
-// Fetch concert details
 $concert = null;
 $sql = "SELECT * FROM konser WHERE id_artis = $id_artis";
 if ($result = $conn->query($sql)) {
@@ -17,16 +23,13 @@ if ($result = $conn->query($sql)) {
     echo "Error fetching concert details: " . $conn->error;
 }
 
-// Fetch tickets
 $tickets = null;
 $sql = "SELECT * FROM ticket WHERE id_artis = $id_artis";
 if ($tickets = $conn->query($sql)) {
-    // $tickets is now the result set
 } else {
     echo "Error fetching tickets: " . $conn->error;
 }
 
-// Fetch detailed concert information
 $detail_concerts = [];
 $sql = "SELECT * FROM detail_konser WHERE id_artis = $id_artis";
 if ($detail_result = $conn->query($sql)) {
@@ -36,8 +39,8 @@ if ($detail_result = $conn->query($sql)) {
 } else {
     echo "Error fetching detailed concert information: " . $conn->error;
 }
+?>
 
-$conn->close();
 ?>
 <!DOCTYPE html>
 <html>
@@ -94,6 +97,18 @@ $conn->close();
             </tr>
         </table>
         <div class="deskripsi_konser">
+            <h1>Tentang Konser</h1>
+            <p><?php echo htmlspecialchars($concert['tentang_konser'] ?? ''); ?></p>
+        </div>
+        <div class="seating_plan">
+            <h1>Pengaturan tempat duduk</h1>
+            <?php if ($concert && isset($concert['image_seat'])): ?>
+                <img id="gambar_seat" src="data:image/jpeg;base64,<?php echo base64_encode($concert['image_seat']); ?>" alt="Seating Plan">
+            <?php else: ?>
+                <p>Seating Plan tidak tersedia</p>
+            <?php endif; ?>
+        </div>
+        <div class="deskripsi_konser">
             <h1>Jadwal Konser</h1>
             <table class="stock">
                 <tr>
@@ -112,22 +127,10 @@ $conn->close();
                 <?php endforeach; ?>
             </table>
         </div>
-        <div class="deskripsi_konser">
-            <h1>Tentang Konser</h1>
-            <p><?php echo htmlspecialchars($concert['tentang_konser'] ?? ''); ?></p>
-        </div>
-        <div class="seating_plan">
-            <h1>Pengaturan tempat duduk</h1>
-            <?php if ($concert && isset($concert['image_seat'])): ?>
-                <img id="gambar_seat" src="data:image/jpeg;base64,<?php echo base64_encode($concert['image_seat']); ?>" alt="Seating Plan">
-            <?php else: ?>
-                <p>Seating Plan tidak tersedia</p>
-            <?php endif; ?>
-        </div>
         <div class="judul_ticket">
             <h1>Daftar Ticket</h1>
         </div>
-        <form id="ticketForm" onsubmit="return validateTickets()">
+        <form id="ticketForm" onsubmit="return validateTickets()" action="Order.php">
             <table class="stock">
                 <tr>
                     <th>Tipe Ticket</th>
@@ -156,6 +159,7 @@ $conn->close();
                 <button type="button" class="buy-tickets-btn" onclick="alert('Please login to buy tickets.');">Buy Tickets Now!</button>
             <?php endif; ?>
         </form>
+
         <div class="syarat">
             <h1>SYARAT & KETENTUAN</h1>
             <ol>
@@ -184,6 +188,9 @@ $conn->close();
         </ul>
     </div>
 </footer>
+<?php
+$conn->close();
+?>
 <script>
 function validateTickets() {
     var quantities = document.querySelectorAll('input[name^="quantity"]');
