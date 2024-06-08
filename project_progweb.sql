@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 29, 2024 at 11:17 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: Jun 08, 2024 at 08:47 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -134,7 +134,25 @@ INSERT INTO `ticket` (`id_ticket`, `id_artis`, `tipe_ticket`, `stock`, `harga`) 
 (2, 1, 'CAT 1B', 12, 2900000),
 (3, 1, 'CAT 2A', 56, 2700000),
 (4, 1, 'CAT 2B', 12, 2700000),
-(5, 1, 'CAT 2C', 0, 1700000);
+(5, 1, 'CAT 2C', 0, 1700000),
+(6, 2, 'CAT 1A', 99, 2900000),
+(7, 2, 'CAT 1B', 12, 2900000),
+(8, 2, 'CAT 2A', 56, 2700000),
+(9, 2, 'CAT 2B', 12, 2700000),
+(10, 2, 'CAT 2C', 0, 1700000),
+(11, 3, 'CAT 1A', 99, 2900000),
+(12, 3, 'CAT 1B', 12, 2900000),
+(13, 3, 'CAT 2A', 56, 2700000),
+(14, 3, 'CAT 2B', 12, 2700000),
+(15, 3, 'CAT 2C', 0, 1700000),
+(16, 4, 'CAT 1A', 99, 2900000),
+(17, 4, 'CAT 1B', 12, 2900000),
+(18, 4, 'CAT 2A', 56, 2700000),
+(19, 4, 'CAT 2B', 12, 2700000),
+(20, 5, 'CAT 1A', 99, 2900000),
+(21, 5, 'CAT 1B', 12, 2900000),
+(22, 5, 'CAT 2A', 56, 2700000),
+(23, 5, 'CAT 2B', 12, 2700000);
 
 -- --------------------------------------------------------
 
@@ -221,7 +239,7 @@ ALTER TABLE `konser`
 -- AUTO_INCREMENT for table `ticket`
 --
 ALTER TABLE `ticket`
-  MODIFY `id_ticket` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_ticket` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `user`

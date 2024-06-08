@@ -103,25 +103,6 @@ if ($detail_result = $conn->query($sql)) {
                 <p>Seating Plan tidak tersedia</p>
             <?php endif; ?>
         </div>
-        <div class="deskripsi_konser">
-            <h1>Jadwal Konser</h1>
-            <table class="stock">
-                <tr>
-                    <th>City</th>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Venue</th>
-                </tr>
-                <?php foreach ($detail_concerts as $detail): ?>
-                    <tr>
-                        <td><?php echo htmlspecialchars($detail['city']); ?></td>
-                        <td><?php echo htmlspecialchars($detail['detail_date']); ?></td>
-                        <td><?php echo htmlspecialchars($detail['time']); ?></td>
-                        <td><?php echo htmlspecialchars($detail['venue']); ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            </table>
-        </div>
         <div class="judul_ticket">
             <h1>Daftar Ticket</h1>
         </div>
