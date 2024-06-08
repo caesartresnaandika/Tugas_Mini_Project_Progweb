@@ -96,7 +96,7 @@ foreach ($quantity as $id_ticket => $qty) {
                     <div>
                         <input type="number" id="nomorTelepon" name="nomorTelepon" required placeholder="No-Telepon *">
                     </div>
-                </section>
+                    </section>
                 <h2 class="judulTiapForm">Detail Tiket</h2>
                 <p class="informasiForm">Pastikan untuk mengisi detail dengan benar</p>
                 <section class="infoTiket">
@@ -107,19 +107,18 @@ foreach ($quantity as $id_ticket => $qty) {
                                 <?php if ($i == 0): ?>
                                     <label for="dataPemesan_<?php echo $ticket['id_ticket']; ?>_<?php echo $i; ?>">Jika tiket sama dengan Pemesan</label>
                                     <input type="checkbox" id="dataPemesan_<?php echo $ticket['id_ticket']; ?>_<?php echo $i; ?>" name="dataPemesan[<?php echo $ticket['id_ticket']; ?>][<?php echo $i; ?>]" value="1">
-                                <?php endif; ?>
+                            <?php endif; ?>
                             </div>
                             <div>
-                                <input type="text" id="namaDepan_<?php echo $ticket['id_ticket']; ?>_<?php echo $i; ?>" name="namaDepanTiket[<?php echo $ticket['id_ticket']; ?>][<?php echo $i; ?>]" required placeholder="Nama Depan *">
+                                <input type="text" id="namaDepanTiket_<?php echo $ticket['id_ticket']; ?>_<?php echo $i; ?>" name="namaDepanTiket[<?php echo $ticket['id_ticket']; ?>][<?php echo $i; ?>]" required placeholder="Nama Depan *">
                             </div>
                             <div>
-                                <input type="text" id="namaBelakang_<?php echo $ticket['id_ticket']; ?>_<?php echo $i; ?>" name="namaBelakangTiket[<?php echo $ticket['id_ticket']; ?>][<?php echo $i; ?>]" required placeholder="Nama Belakang *">
+                                <input type="text" id="namaBelakangTiket_<?php echo $ticket['id_ticket']; ?>_<?php echo $i; ?>" name="namaBelakangTiket[<?php echo $ticket['id_ticket']; ?>][<?php echo $i; ?>]" required placeholder="Nama Belakang *">
                             </div>
                             <div>
-                                <input type="email" id="email_<?php echo $ticket['id_ticket']; ?>_<?php echo $i; ?>" name="emailTiket[<?php echo $ticket['id_ticket']; ?>][<?php echo $i; ?>]" required placeholder="Alamat e-mail *" pattern="[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-].[a-z]{2,}$">
-                            </div>
+                                <input type="email" id="emailTiket_<?php echo $ticket['id_ticket']; ?>_<?php echo $i; ?>" name="emailTiket[<?php echo $ticket['id_ticket']; ?>][<?php echo $i; ?>]" required placeholder="Alamat e-mail *" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,.}$">
                             <div>
-                                <input type="number" id="nomorTelepon_<?php echo $ticket['id_ticket']; ?>_<?php echo $i; ?>" name="nomorTeleponTiket[<?php echo $ticket['id_ticket']; ?>][<?php echo $i; ?>]" required placeholder="No-Telepon *">
+                                <input type="number" id="nomorTeleponTiket_<?php echo $ticket['id_ticket']; ?>_<?php echo $i; ?>" name="nomorTeleponTiket[<?php echo $ticket['id_ticket']; ?>][<?php echo $i; ?>]" required placeholder="No-Telepon *">
                             </div>
                         <?php endfor; ?>
                     <?php endforeach; ?>
@@ -154,7 +153,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'] ?? '';
     $nomorTelepon = $_POST['nomorTelepon'] ?? '';
 
-    // Ambil detail tiket dari form
+    // // Ambil detail tiket dari form
     $namaDepanTiket = $_POST['namaDepanTiket'] ?? [];
     $namaBelakangTiket = $_POST['namaBelakangTiket'] ?? [];
     $emailTiket = $_POST['emailTiket'] ?? [];
@@ -162,25 +161,40 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Insert data ke dalam tabel keranjang
     $stmt = $conn->prepare("INSERT INTO keranjang (id_user, nama_konser, tipe_ticket, qty, harga, nama_depan, nama_belakang, email, nomor_telepon) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    foreach ($tickets as $ticket) {
+    $stmt->bind_param("isssisssi", $id_user, $nama_konser, $tipe_ticket, $qty, $harga, $namaDepan, $namaBelakang, $email, $nomorTelepon);
+
+    foreach ($tickets as $ticket){
         for ($i = 0; $i < $ticket['qty']; $i++) {
             $id_user = 1; // Sesuaikan dengan ID pengguna yang sebenarnya
+            $nama_konser = $nama_konser;
             $tipe_ticket = $ticket['tipe_ticket'];
             $qty = 1;
             $harga = $ticket['harga'];
-            $nama_depan_tiket = $namaDepanTiket[$ticket['id_ticket']][$i];
-            $nama_belakang_tiket = $namaBelakangTiket[$ticket['id_ticket']][$i];
-            $email_tiket = $emailTiket[$ticket['id_ticket']][$i];
-            $nomor_telepon_tiket = $nomorTeleponTiket[$ticket['id_ticket']][$i];
-            
-            $stmt->bind_param("isssissis", $id_user, $nama_konser, $tipe_ticket, $qty, $harga, $nama_depan_tiket, $nama_belakang_tiket, $email_tiket, $nomor_telepon_tiket);
+
+            $namaDepan = $_POST['namaDepan'] ?? '';
+            $namaBelakang = $_POST['namaBelakang'] ?? '';
+            $email = $_POST['email'] ?? '';
+            $nomorTelepon = $_POST['nomorTelepon'] ?? '';
+
+            // if (isset($_POST['dataPemesan'][$ticket['id_ticket']][$i])) {
+            //     $nama_depan_tiket = $namaDepan;
+            //     $nama_belakang_tiket = $namaBelakang;
+            //     $email_tiket = $email;
+            //     $nomor_telepon_tiket = $nomorTelepon;
+            // } else {
+            //     $nama_depan_tiket = $namaDepanTiket[$ticket['id_ticket']][$i] ?? '';
+            //     $nama_belakang_tiket = $namaBelakangTiket[$ticket['id_ticket']][$i] ?? '';
+            //     $email_tiket = $emailTiket[$ticket['id_ticket']][$i] ?? '';
+            //     $nomor_telepon_tiket = $nomorTeleponTiket[$ticket['id_ticket']][$i] ?? '';
+            // }
+
             $stmt->execute();
         }
     }
     $stmt->close();
 
     // Redirect ke halaman sukses
-    header("Location: sukses.php");
+    header("Location: Order.php");
     exit;
 }
 ?>

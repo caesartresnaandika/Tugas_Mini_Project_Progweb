@@ -31,6 +31,7 @@
     </div>
     <script src="../js/LoginSignUp.js"></script>
 </body>
+
 <?php
 include "koneksi.php";
 session_start();
@@ -49,8 +50,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['username'] = $username;
                 $_SESSION['user_id'] = $user['id_user']; // Assuming user table has an id_user column
                 echo "<script>alert('Login berhasil.');
-                    window.location.href='Home2.php';
                     </script>";
+                header("Location:Home2.php");
                 exit();
             } else {
                 echo "<script>alert('Password salah.');</script>";
@@ -74,8 +75,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $insertQuery = "INSERT INTO user (username, no_telepon, password) VALUES ('$username', '$phone', '$confirmPassword')";
                 if (mysqli_query($conn, $insertQuery)) {
                     echo "<script>alert('Sign-up berhasil. Anda dapat melakukan login sekarang.');
-                    window.location.href='Home2.php';
                     </script>";
+                    header("Location:Home2.php");
                     exit();
                 } else {
                     echo "<script>alert('Gagal menyimpan data, silahkan coba lagi.');</script>";
