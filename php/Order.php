@@ -1,11 +1,20 @@
 <?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    echo "<script>alert('Please login to access this page.');
+    window.location.href='LoginSignUp.php';
+    </script>";
+    exit();
+}
+include "../php/koneksi.php";
 // Ambil data dari form yang dikirimkan
 $nama_konser = $_POST['nama_konser'] ?? '';
 $quantity = $_POST['quantity'] ?? [];
 
+
 // Ambil detail tiket dari database
-include "../php/koneksi.php";
 $tickets = [];
+
 foreach ($quantity as $id_ticket => $qty) {
     if ($qty > 0) {
         $sql = "SELECT * FROM ticket WHERE id_ticket = $id_ticket";
@@ -18,8 +27,9 @@ foreach ($quantity as $id_ticket => $qty) {
         }
     }
 }
-?>
 
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,7 +42,7 @@ foreach ($quantity as $id_ticket => $qty) {
 </head>
 <body>
     <header>
-        <a href="Home.html" class="judul"><span>TiketQ</span></a>
+        <a href="Home2.php" class="judul"><span>TiketQ</span></a>
         <table>
             <td>
                 <a href="#" class="icons"><img src="../gambar/keranjang.png"></a>
@@ -79,46 +89,30 @@ foreach ($quantity as $id_ticket => $qty) {
             </div>
         </section>
         
-        <form method="post" action="">
-            <section class="isiForm">
-                <h2 class="judulTiapForm">Detail Pemesanan</h2>
-                <p class="informasiForm">Isi formulir dengan benar karena e-tiket akan dikirim melalui e-mail sesuai detail pemesanan</p>
-                <section class="infoPemesan">
-                    <div>
-                        <input type="text" id="namaDepan" name="namaDepan" required placeholder="Nama Depan *">
-                    </div>
-                    <div>
-                        <input type="text" id="namaBelakang" name="namaBelakang" required placeholder="Nama Belakang *">
-                    </div>
-                    <div>
-                        <input type="email" id="email" name="email" required placeholder="Alamat e-mail *" pattern="[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-].[a-z]{2,}$">
-                    </div>
-                    <div>
-                        <input type="number" id="nomorTelepon" name="nomorTelepon" required placeholder="No-Telepon *">
-                    </div>
-                    </section>
+        <form method="POST" action="Order.php">
                 <h2 class="judulTiapForm">Detail Tiket</h2>
                 <p class="informasiForm">Pastikan untuk mengisi detail dengan benar</p>
                 <section class="infoTiket">
-                    <?php foreach ($tickets as $ticket): ?>
+                    <?php foreach ($tickets as $ticket): ?>  
                         <?php for ($i = 0; $i < $ticket['qty']; $i++): ?>
                             <p class="jumlahTiket">Tiket <?php echo $i + 1; ?> (<?php echo htmlspecialchars($ticket['tipe_ticket']); ?>)</p>
                             <div class="tiket1">
                                 <?php if ($i == 0): ?>
-                                    <label for="dataPemesan_<?php echo $ticket['id_ticket']; ?>_<?php echo $i; ?>">Jika tiket sama dengan Pemesan</label>
-                                    <input type="checkbox" id="dataPemesan_<?php echo $ticket['id_ticket']; ?>_<?php echo $i; ?>" name="dataPemesan[<?php echo $ticket['id_ticket']; ?>][<?php echo $i; ?>]" value="1">
-                            <?php endif; ?>
+                                    <label for="dataPemesan<?php echo $ticket['id_ticket']; ?><?php echo $i; ?>">Jika tiket sama dengan Pemesan</label>
+                                    <input type="checkbox" id="dataPemesan<?php echo $ticket['id_ticket']; ?><?php echo $i; ?>" name="dataPemesan[<?php echo $ticket['id_ticket']; ?>][<?php echo $i; ?>]" value="1">
+                                <?php endif; ?>
                             </div>
                             <div>
-                                <input type="text" id="namaDepanTiket_<?php echo $ticket['id_ticket']; ?>_<?php echo $i; ?>" name="namaDepanTiket[<?php echo $ticket['id_ticket']; ?>][<?php echo $i; ?>]" required placeholder="Nama Depan *">
+                                <input type="text" id="namaLengkap[<?php echo $ticket['id_ticket']; ?>][<?php echo $i; ?>]" name="namaDepanTiket[<?php echo $ticket['id_ticket']; ?>][<?php echo $i; ?>]" required placeholder="Nama Depan *">
                             </div>
                             <div>
-                                <input type="text" id="namaBelakangTiket_<?php echo $ticket['id_ticket']; ?>_<?php echo $i; ?>" name="namaBelakangTiket[<?php echo $ticket['id_ticket']; ?>][<?php echo $i; ?>]" required placeholder="Nama Belakang *">
+                                <input type="text" id="namaBelakang[<?php echo $ticket['id_ticket']; ?>][<?php echo $i; ?>]" name="namaBelakangTiket[<?php echo $ticket['id_ticket']; ?>][<?php echo $i; ?>]" required placeholder="Nama Belakang *">
                             </div>
                             <div>
-                                <input type="email" id="emailTiket_<?php echo $ticket['id_ticket']; ?>_<?php echo $i; ?>" name="emailTiket[<?php echo $ticket['id_ticket']; ?>][<?php echo $i; ?>]" required placeholder="Alamat e-mail *" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,.}$">
+                                <input type="email" id="email[<?php echo $ticket['id_ticket']; ?>][<?php echo $i; ?>]" name="emailTiket[<?php echo $ticket['id_ticket']; ?>][<?php echo $i; ?>]" required placeholder="Alamat e-mail *" >
+                            </div>
                             <div>
-                                <input type="number" id="nomorTeleponTiket_<?php echo $ticket['id_ticket']; ?>_<?php echo $i; ?>" name="nomorTeleponTiket[<?php echo $ticket['id_ticket']; ?>][<?php echo $i; ?>]" required placeholder="No-Telepon *">
+                                <input type="number" id="nomorTelepon[<?php echo $ticket['id_ticket']; ?>][<?php echo $i; ?>]" name="nomorTeleponTiket[<?php echo $ticket['id_ticket']; ?>][<?php echo $i; ?>]" required placeholder="No-Telepon *">
                             </div>
                         <?php endfor; ?>
                     <?php endforeach; ?>
@@ -126,6 +120,7 @@ foreach ($quantity as $id_ticket => $qty) {
             </section>
             <div>
                 <input type="submit" id="tombolPembayaran" value="Lanjutkan Pembayaran"></input>
+                
             </div>
         </form>
     </main>
@@ -144,9 +139,27 @@ foreach ($quantity as $id_ticket => $qty) {
     </footer>
 </body>
 </html>
-
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $stmt = $conn->prepare("INSERT INTO keranjang (id_user,nama_konser, tipe_ticket, qty, harga, nama_depan, nama_belakang, email, nomor_telepon) VALUES (?,?,?, ?,?, ?, ?, ?, ?)");
+    // Insert data ke dalam tabel keranjang
+    foreach ($tickets as $ticket) {
+        // Sesuaikan dengan ID pengguna yang sebenarnya
+        $nama_konser = $_POST['nama_konser'] ?? '';
+        $tipe_ticket = $ticket['tipe_ticket'];
+        $harga = $ticket['harga'];
+        $id_user =$_SESSION['user_id'];
+        
+
+        for ($i = 0; $i < $ticket['qty']; $i++) {
+            $nama_depan_tiket = ['namaDepanTiket'][$ticket['id_ticket']][$i] ?? '';
+            $nama_belakang_tiket = ['namaBelakangTiket'][$ticket['id_ticket']][$i] ?? '';
+            $email_tiket = ['emailTiket'][$ticket['id_ticket']][$i] ?? '';
+            $nomor_telepon_tiket = ['nomorTeleponTiket'][$ticket['id_ticket']][$i] ?? '';
+            $qty = 1;
+
+            $stmt->bind_param("issidssss", $id_user,$nama_konser, $tipe_ticket, $qty, $harga, $nama_depan_tiket, $nama_belakang_tiket, $email_tiket, $nomor_telepon_tiket);
+
     // Ambil data dari form
     $namaDepan = $_POST['namaDepan'] ?? '';
     $namaBelakang = $_POST['namaBelakang'] ?? '';
@@ -187,14 +200,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             //     $email_tiket = $emailTiket[$ticket['id_ticket']][$i] ?? '';
             //     $nomor_telepon_tiket = $nomorTeleponTiket[$ticket['id_ticket']][$i] ?? '';
             // }
-
             $stmt->execute();
         }
     }
     $stmt->close();
-
-    // Redirect ke halaman sukses
-    header("Location: Order.php");
-    exit;
 }
+exit; // Keluar dari skrip PHP
 ?>
