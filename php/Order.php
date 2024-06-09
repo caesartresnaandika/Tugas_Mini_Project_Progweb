@@ -90,7 +90,7 @@ foreach ($quantity as $id_ticket => $qty) {
         </section>
         
         <form method="POST" action="Order.php">
-            <h2 class="judulTiapForm">Detail Tiket</h2>
+                <h2 class="judulTiapForm">Detail Tiket</h2>
                 <p class="informasiForm">Pastikan untuk mengisi detail dengan benar</p>
                 <section class="infoTiket">
                     <?php foreach ($tickets as $ticket): ?>  
@@ -159,13 +159,51 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $qty = 1;
 
             $stmt->bind_param("issidssss", $id_user,$nama_konser, $tipe_ticket, $qty, $harga, $nama_depan_tiket, $nama_belakang_tiket, $email_tiket, $nomor_telepon_tiket);
+
+    // Ambil data dari form
+    $namaDepan = $_POST['namaDepan'] ?? '';
+    $namaBelakang = $_POST['namaBelakang'] ?? '';
+    $email = $_POST['email'] ?? '';
+    $nomorTelepon = $_POST['nomorTelepon'] ?? '';
+
+    // // Ambil detail tiket dari form
+    $namaDepanTiket = $_POST['namaDepanTiket'] ?? [];
+    $namaBelakangTiket = $_POST['namaBelakangTiket'] ?? [];
+    $emailTiket = $_POST['emailTiket'] ?? [];
+    $nomorTeleponTiket = $_POST['nomorTeleponTiket'] ?? [];
+
+    // Insert data ke dalam tabel keranjang
+    $stmt = $conn->prepare("INSERT INTO keranjang (id_user, nama_konser, tipe_ticket, qty, harga, nama_depan, nama_belakang, email, nomor_telepon) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("isssisssi", $id_user, $nama_konser, $tipe_ticket, $qty, $harga, $namaDepan, $namaBelakang, $email, $nomorTelepon);
+
+    foreach ($tickets as $ticket){
+        for ($i = 0; $i < $ticket['qty']; $i++) {
+            $id_user = 1; // Sesuaikan dengan ID pengguna yang sebenarnya
+            $nama_konser = $nama_konser;
+            $tipe_ticket = $ticket['tipe_ticket'];
+            $qty = 1;
+            $harga = $ticket['harga'];
+
+            $namaDepan = $_POST['namaDepan'] ?? '';
+            $namaBelakang = $_POST['namaBelakang'] ?? '';
+            $email = $_POST['email'] ?? '';
+            $nomorTelepon = $_POST['nomorTelepon'] ?? '';
+
+            // if (isset($_POST['dataPemesan'][$ticket['id_ticket']][$i])) {
+            //     $nama_depan_tiket = $namaDepan;
+            //     $nama_belakang_tiket = $namaBelakang;
+            //     $email_tiket = $email;
+            //     $nomor_telepon_tiket = $nomorTelepon;
+            // } else {
+            //     $nama_depan_tiket = $namaDepanTiket[$ticket['id_ticket']][$i] ?? '';
+            //     $nama_belakang_tiket = $namaBelakangTiket[$ticket['id_ticket']][$i] ?? '';
+            //     $email_tiket = $emailTiket[$ticket['id_ticket']][$i] ?? '';
+            //     $nomor_telepon_tiket = $nomorTeleponTiket[$ticket['id_ticket']][$i] ?? '';
+            // }
             $stmt->execute();
-            
         }
     }
     $stmt->close();
-    
-    
 }
 exit; // Keluar dari skrip PHP
 ?>

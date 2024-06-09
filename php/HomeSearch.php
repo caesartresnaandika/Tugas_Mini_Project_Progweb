@@ -1,8 +1,15 @@
-<?php
-  session_start();
-  $username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
-  $isLoggedIn = !empty($username);
-?>
+
+  <?php
+    session_start();
+    if(!isset($_SESSION['username']))
+   {
+    header("location:LoginSignUp.php");
+   }
+   else
+   {
+    echo $_SESSION['username'];
+    }
+    ?>
 
 <!DOCTYPE html>
 <html lang="eng">
@@ -16,8 +23,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    
-
     <!-- header section  starts-->
     <header>
         <a href="#" class="judul"><span>TiketQ</span></a>
@@ -38,8 +43,8 @@
             <div class="icons">
                 <a href="Keranjang.php" class="apalah"><img src="../gambar/keranjang.png"></a>
             </div>
-            <div class="masuk" id="user-menu">
-                <a href="LoginSignup.php"><p>Masuk</p></a>
+            <div class="masuk">
+                <p>Masuk</p>
             </div>
         </div>
     </header>
@@ -65,25 +70,10 @@
     });
 </script>
 
-    <!-- paling atas pokoknya mulai  -->
-    <section class="home" id="home">
-        <div class="content">
-            <h3>Hot Deals</h3>
-            <span>Penawaran terbaik kami</span>
-            <p>Jangan sampai kehabisan!</p>
-            <a href="Order.php" class="buttonhome">Beli Sekarang</a>
-        </div>
-    </section>
-
     <!-- recommendation section starts -->
-    <!-- <div class="tulisan">
-           <h2>Daftar Konser</h2>
-    </div> -->
-    
     <section class="rekomen" id="rekomen">
            <div class="box-container">
-            
-           <br>
+            <!-- <h2 class="heading">Hasil Pencarian Anda:</h2> -->
             <?php
             include 'koneksi.php';
 
