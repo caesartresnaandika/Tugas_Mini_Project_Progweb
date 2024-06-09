@@ -1,20 +1,8 @@
 <?php
 include "../php/koneksi.php";
 session_start();
-
 $username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
 $isLoggedIn = !empty($username);
-
-if (!isset($_SESSION['user_id'])) {
-    echo "<script>alert('Please login to access this page.');
-    window.location.href='LoginSignUp.php';
-    </script>";
-    exit();
-}
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
 
 $id_artis = isset($_GET['id_artis']) ? (int)$_GET['id_artis'] : 0;
 
@@ -59,12 +47,13 @@ if ($detail_result = $conn->query($sql)) {
     <header>
         <a href="../php/Home2.php" class="judul"><span>TiketQ</span></a>
         <ul class="navlist">
-            <li><a href="../php/Home2.php">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#foot">Contact Us</a></li>
+            <li><a href="../php/Home2.php">Rumah</a></li>
+            <li><a href="../php/ListKonser.php">List Konser</a></li>
+            <li><a href="#">Tentang</a></li>
+            <li><a href="#foot">Kontak</a></li>
         </ul>
         <div class="gabung_kanan">
-            <form method="GET" action="../php/Home2.php">
+            <form method="GET" action="../php/ListKonser.php">
                 <div class="searchBox">
                     <input type="text" class="searchText" name="searchText" placeholder="Masukkan konser/artis/lokasi ...">
                     <button type="submit" class="searchBtn" id="searchButton">
@@ -94,7 +83,7 @@ if ($detail_result = $conn->query($sql)) {
                 <div class="dropdown">
                     <i class="fa-solid fa-user"><button class="dropdown-button">&nbsp;&nbsp;${username}</button></i>
                     <div class="dropdown-content">
-                        <a href="logout.php">Log Out</a>
+                        <a href="logout.php">Keluar</a>
                     </div>
                 </div>
             `;
@@ -146,7 +135,7 @@ if ($detail_result = $conn->query($sql)) {
                 <p>Seating Plan tidak tersedia</p>
             <?php endif; ?>
         </div>
-        <div class="deskripsi_konser">
+        <div class="deskripsi_konserr">
             <h1>Jadwal Konser</h1>
             <table class="stock">
                 <tr>
@@ -191,7 +180,7 @@ if ($detail_result = $conn->query($sql)) {
                     <tr><td colspan="4">No tickets available</td></tr>
                 <?php endif; ?>
             </table>
-            <button type="submit" class="buy-tickets-btn">Buy Tickets Now!</button>
+            <button type="submit" class="buy-tickets-btn">Buy  Tickets  Now!</button>
         </form>
         <div class="syarat">
             <h1>SYARAT & KETENTUAN</h1>
@@ -217,9 +206,10 @@ if ($detail_result = $conn->query($sql)) {
     </div>
     <div class="footernav">
         <ul>
-            <li><a href="">Home</a></li>
-            <li><a href="">About</a></li>
-            <li><a href="#foot">Contact Us</a></li>
+            <li><a href="../php/Home2.php">Rumah</a></li>
+            <li><a href="">List Konser</a></li>
+            <li><a href="">Tentang</a></li>
+            <li><a href="#foot">Kontak</a></li>
         </ul>
     </div>
 </footer>   

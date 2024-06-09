@@ -28,7 +28,7 @@
             <li><a href="#foot">Kontak</a></li>
         </ul>
         <div class="gabung_kanan">
-            <form method="GET" action="../php/ListKonser.php">
+            <form method="GET" action="../php/Home2.php">
                 <div class="searchBox">
                     <input type="text" class="searchText" name="searchText" placeholder="Masukkan konser/artis/lokasi ...">
                     <button type="submit" class="searchBtn" id="searchButton">
@@ -65,16 +65,6 @@
         }
     });
 </script>
-
-    <!-- paling atas pokoknya mulai  -->
-    <section class="home" id="home">
-        <div class="content">
-            <h3>Pilihan Kami!</h3>
-            <span>Penawaran terbaik kami</span>
-            <p>Jangan sampai kehabisan!</p>
-            <a href="Order.php" class="buttonhome">Beli Sekarang</a>
-        </div>
-    </section>
 
     <!-- recommendation section starts -->
     <!-- <div class="tulisan">
@@ -148,10 +138,9 @@
     </div>
     <div class="footernav">
         <ul>
-        <li><a href="../php/Home2.php">Rumah</a></li>
-            <li><a href="../php/ListKonser.php">List Konser</a></li>
-            <li><a href="../php/About.php">Tentang</a></li>
-            <li><a href="#foot">Kontak</a></li>
+            <li><a href="">Home</a></li>
+            <li><a href="">About</a></li>
+            <li><a href="#foot">Contact Us</a></li>
         </ul>
     </div>
 </footer>

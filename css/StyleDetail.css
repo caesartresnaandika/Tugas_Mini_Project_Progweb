@@ -14,40 +14,66 @@ main{
 }
 
 header{
-    position: fixed;
+    position: sticky;
     top: 0; left: 0; right: 0;
     background-image: linear-gradient(#041D3C,#03050F);
-    padding: 10px;
+    padding: 15px 20px 15px 20px;
     display: flex;
     align-items: center;
     justify-content:space-between ;
     z-index: 1000;
-    box-shadow: 0 .2rem 1rem #03050F;
+    transition: all .50s ease;
 }
+.navlist{
+    display: flex;
+
+}
+.navlist a{
+    display: inline-block;
+    margin: 0 35px;
+    color:#FBFBFB ;
+    font-size: 20px;
+    font-family: 'Secular One';
+    transition: all .6s ease;
+}
+
+.navlist a:hover{
+    color: wheat;
+    transform: scale(1.1);
+}
+
 header .judul{
     font-size: 30px;
-    color: white;
+    color: #FBFBFB;
     font-weight: bolder;
     font-family: 'Secular One';
     letter-spacing: 3px;
-    text-decoration: none; 
 }
-header .masuk{
-    font-family: 'Secular One';
-    display: inline-block;
-    border-radius: 15px;
-    border: #050D28;
-    background: #E7F2FF;
-    color: #041D3C;
-    padding: 10px 30px;
-    cursor: pointer;
-    font-size: 15px;
+
+header .logo span{
+    color: #FBFBFB;
+    font-size: 10px;
     font-weight: bold;
-    letter-spacing: 1px;
-    text-decoration: none;
+    text-align: left;
 }
+
+header .navbar a{
+    font-size: 20px;
+    color: #FBFBFB;
+}
+
+header .navbar a:hover{
+    color: wheat;
+}
+
+.gabung_kanan{
+    display: flex;
+    align-items: center;
+}
+
 header .icons {
-    margin-right: 10px;
+    float: left;
+    margin-right: 20px;
     color: #FBFBFB;
 }
 
@@ -60,7 +86,7 @@ ul.breadcrumb {
     display: flex;
     width: 100%;
     position:fixed;
-    top: 60px;
+    top: 68px;
     font-family: "Secular One";
     color: white;
     padding: 10px 16px; 
@@ -81,13 +107,14 @@ ul.breadcrumb li a {
     text-decoration: none;
 }
 ul.breadcrumb li a:hover {
-    color: #01447e;
+    color: #f5deb3;
 }
 #gambar {
-    margin-left: 30px;
-    margin-top: 25px;
-    width: 800px;
-    height: 450px;
+    margin-left: 0px;
+    margin-top: 10px;
+    width:auto;
+    height:400px;
+    border-radius: 20px;
 }
 .detail {
     color: white;
@@ -100,82 +127,135 @@ ul.breadcrumb li a:hover {
 .detail p {
     margin: 20px;
 }
+
 ul.detail_konser{
     font-size: 21px;
     line-height: 200%;
     list-style-type: none;
+    padding-left: 20px;
 }
+
 .judul_konser {
-    font-size: 1px;
     color: white;
     font-weight: bold;
     font-size: 40px;
 }
+
 .deskripsi_konser {
     color: white;
-    padding-right: 30px;
-    padding-left: 30px;
-    text-align: left;
+    padding-right:50px;
+    padding-left: 50px;
+    text-align: center;
+
 }
+.deskripsi_konserr .stock{
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}
+
 .jadwal_konser{
     color: white;
     padding-right: 30px;
     padding-left: 30px;
-    text-align: left;
+    text-align: center;
+}
+.deskripsi_konser h1{
+    margin-bottom: 20px;
+    text-align: center;
+    margin-top: 70px;
+    font-size: 25px;
+}
+.deskripsi_konserr h1{
+    margin-bottom: 20px;
+    text-align: center;
+    margin-top: 40px;
+    color: white;
+    font-size: 25px;
 }
 .deskripsi_konser p{
     font-size: medium;
     color: black;
     background: white;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 38px;
-    padding: 30px;
+    border-radius: 30px;
+    padding: 25px;
+    margin-bottom: 50px;
+    text-align: justify;
 }
 #gambar_seat {
     width: 800px;
     height: 1000px;
+    border-radius: 20px;
 }
+
 .seating_plan {
     color: white;
     padding-right: 30px;
     padding-left: 30px;
 }
 .seating_plan h1 {
-    text-align: left;
+        margin-bottom: 20px;
+        text-align: center;
+        margin-top: 40px;
+        font-size: 25px;
 }
-.judul_ticket {
+
+.judul_ticket{
     color: white;
     padding-right: 30px;
     padding-left: 30px;
-    text-align: left;
+    text-align: center;
+}
+
+.deskripsi_konser h1 {
+    margin-bottom: 20px;
+    text-align: center;
+    margin-top: 40px;
+    font-size: 25px;
+}
+
+.judul_ticket h1 {
+    margin-bottom: 20px;
+    text-align: center;
+    margin-top: 40px;
+    font-size: 25px;
+}
+
+.stock{
+    text-align: center;
+    font-size: 18px;
+    font-weight: lighter;
 }
 
 .stock th, .stock td {
 color: white;
 padding: 10px ;
+font-size: 18px;
 border: 1px solid #ddd;
 text-align: center;
 }
+.syarat{
+    margin-bottom: 70px;
+}
 .syarat h1{
-    color: white;
-    padding-right: 30px;
-    padding-left: 30px;
-    text-align: left;
+    margin-bottom: 20px;
+        text-align: center;
+        margin-top: 70px;
+        font-size: 25px;
+        color: white;
 }
-.syarat h2{
-    color: white;
-    font-size: medium;
-    padding-right: 30px;
-    padding-left: 30px;
-    text-align: left;
-}
+
 .syarat ol{
     color: white;
     line-height: 30px;
-    font-size: large;
+    font-size: 18px;
     padding-right: 70px;
     padding-left: 70px;
-    text-align: left;
+    text-align: justify;
 }
 #text_merah {
     color: red;
@@ -264,12 +344,21 @@ footer .footernav ul li a:hover{
 
 
 .buy-tickets-btn{
-    margin: 2rem;
+   margin-top: 15px;
+   font-size: 18px;
     color: black;
-    padding : 10px;
-    text-align: left;
+    padding : 10px 40px;
+    text-align: center;
     border-radius: 10px;
-    position: relative;
-    left : 150px;
-
+    position: center;
+    background-color: #E7F2FF;
+    letter-spacing: 1px;
+    transition: all .6s ease;
+}
+.buy-tickets-btn:hover{
+    background-color: wheat;
+    text-shadow: 0px 0px 10px var(--text-light);
+    box-shadow: inset 0.4px 1px 4px var(--edge-light),
+      2px 4px 8px hsla(0, 0%, 0%, 0.295);
+    transform: scale(1.1);
 }
