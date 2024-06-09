@@ -2,34 +2,18 @@
 include "../php/koneksi.php";
 session_start();
 
-if (!isset($_SESSION['user_id'])) {
-    echo "<script>alert('Please login to access this page.');
-    window.location.href='LoginSignUp.php';
-    </script>";
-    exit();
-}
+$id_user = $_SESSION['user_id'];
 
-$cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
-if (!$cart) {
-    echo "<script>alert('Your cart is empty.');
-    window.location.href='Home2.php';
-    </script>";
-    exit();
-}
+// Mengambil data dari tabel keranjang berdasarkan id_user
+$sql = "SELECT * FROM keranjang WHERE id_user = $id_user";
+$result = $conn->query($sql);
 
 $tickets = [];
-foreach ($cart as $id_ticket => $quantity) {
-    $sql = "SELECT * FROM ticket WHERE id_ticket = $id_ticket";
-    if ($result = $conn->query($sql)) {
-        if ($ticket = $result->fetch_assoc()) {
-            $ticket['quantity'] = $quantity;
-            $tickets[] = $ticket;
-        }
-    } else {
-        echo "Error fetching tickets: " . $conn->error;
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $tickets[] = $row;
     }
 }
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -45,9 +29,6 @@ foreach ($cart as $id_ticket => $quantity) {
     <table>
         <tr>
             <td>
-                <a href="#" class="icons"><img src="../gambar/keranjang.png"></a>
-            </td>
-            <td>
                 <a href="#" class="masuk"><span>Masuk</span></a>
             </td>
         </tr>
@@ -59,8 +40,9 @@ foreach ($cart as $id_ticket => $quantity) {
             <h1>Keranjang Anda</h1>
         </div>
         <form method="post" action="Checkout.php">
-            <table class="stock">
+            <table class="stock cart-table">
                 <tr>
+                    <th>Nama Konser</th>
                     <th>Tipe Ticket</th>
                     <th>Harga</th>
                     <th>Jumlah Ticket</th>
@@ -70,21 +52,22 @@ foreach ($cart as $id_ticket => $quantity) {
                 <?php if ($tickets): ?>
                     <?php foreach ($tickets as $ticket): ?>
                     <tr>
+                        <td><?php echo htmlspecialchars($ticket['nama_konser']); ?></td>
                         <td><?php echo htmlspecialchars($ticket['tipe_ticket']); ?></td>
                         <td><?php echo htmlspecialchars($ticket['harga']); ?></td>
-                        <td><?php echo htmlspecialchars($ticket['quantity']); ?></td>
-                        <td><?php echo htmlspecialchars($ticket['harga'] * $ticket['quantity']); ?></td>
+                        <td><?php echo htmlspecialchars($ticket['qty']); ?></td>
+                        <td><?php echo htmlspecialchars($ticket['harga'] * $ticket['qty']); ?></td>
                         <td>
-                            <a href="RemoveFromCart.php?id_ticket=<?php echo htmlspecialchars($ticket['id_ticket']); ?>">Hapus</a>
+                            <a href="RemoveFromCart.php?id_keranjang=<?php echo htmlspecialchars($ticket['id_keranjang']); ?>">Hapus</a>
                         </td>
                     </tr>
                     <?php endforeach; ?>
                 <?php else: ?>
-                    <tr><td colspan="5">Keranjang kosong</td></tr>
+                    <tr><td colspan="6">Keranjang kosong</td></tr>
                 <?php endif; ?>
             </table>
-            <button type="submit" class="buy-tickets-btn">Checkout</button>
         </form>
+        <button type="button" class="tickets-btn" onclick="window.location.href='Home2.php'">Back</button>
     </center>
 </main>
 <footer>

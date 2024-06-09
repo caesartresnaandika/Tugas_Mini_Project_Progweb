@@ -205,5 +205,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     $stmt->close();
 }
+    }
+}
 exit; // Keluar dari skrip PHP
 ?>
