@@ -1,21 +1,10 @@
 <?php
 // Include database connection and start the session
 include "../php/koneksi.php";
-session_start();
 
-// Retrieve username from session if logged in, otherwise set to an empty string
+session_start();
 $username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
 $isLoggedIn = !empty($username);
-
-// Check if user is logged in by verifying user_id in session
-if (!isset($_SESSION['user_id'])) {
-    // If not logged in, alert the user and redirect to the login/signup page
-    echo "<script>alert('Please login to access this page.');
-    window.location.href='LoginSignUp.php';
-    </script>";
-    exit();
-}
-
 // Check for database connection error
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -68,9 +57,10 @@ if ($detail_result = $conn->query($sql)) {
     <header>
         <a href="../php/Home2.php" class="judul"><span>TiketQ</span></a>
         <ul class="navlist">
-            <li><a href="../php/Home2.php">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#foot">Contact Us</a></li>
+            <li><a href="../php/Home2.php">Rumah</a></li>
+            <li><a href="../php/ListKonser.php">List Konser</a></li>
+            <li><a href="../php/About.php">Tentang</a></li>
+            <li><a href="#foot">Kontak</a></li>
         </ul>
         <div class="gabung_kanan">
             <form method="GET" action="../php/Home2.php">
@@ -155,7 +145,7 @@ if ($detail_result = $conn->query($sql)) {
                 <p>Seating Plan tidak tersedia</p>
             <?php endif; ?>
         </div>
-        <div class="deskripsi_konser">
+        <div class="deskripsi_konserr">
             <h1>Jadwal Konser</h1>
             <table class="stock">
                 <tr>
