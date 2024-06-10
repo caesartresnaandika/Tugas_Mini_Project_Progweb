@@ -19,21 +19,59 @@ if ($result->num_rows > 0) {
 <html>
 <head>
     <link href="https://fonts.cdnfonts.com/css/secular-one" rel="stylesheet">
+    <link rel="stylesheet" href="../css/StyleHome.css">
     <link rel="stylesheet" href="../css/keranjang.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Cart - TicketQ</title>
 </head>
 <body>
-<header>
-    <a href="../php/Home2.php" class="judul"><span>TiketQ</span></a>
-    <table>
-        <tr>
-            <td>
-                <a href="#" class="masuk"><span>Masuk</span></a>
-            </td>
-        </tr>
-    </table>
-</header>
+    <!-- Header section starts -->
+    <header>
+        <a href="../php/Home2.php" class="judul"><span>TiketQ</span></a>
+        <ul class="navlist">
+            <li><a href="../php/Home2.php">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#foot">Contact Us</a></li>
+        </ul>
+        <div class="gabung_kanan">
+            <form method="GET" action="../php/Home2.php">
+                <div class="searchBox">
+                    <input type="text" class="searchText" name="searchText" placeholder="Masukkan konser/artis/lokasi ...">
+                    <button type="submit" class="searchBtn" id="searchButton">
+                        <i class="fas fa-search fa-3x"></i>
+                    </button>
+                </div>
+            </form>
+            <div class="icons">
+                <a href="../php/Keranjang.php" class="apalah"><img src="../gambar/keranjang.png"></a>
+            </div>
+            <div class="masuk" id="user-menu">
+                <a href="../php/LoginSignup.php"><p>Masuk</p></a>
+            </div>
+        </div>
+    </header>
+    <!-- Header section ends -->
+
+    <!-- User login check script -->
+    <script>
+    const isLoggedIn = <?php echo json_encode(isset($_SESSION['username'])); ?>;
+    const username = <?php echo json_encode($_SESSION['username'] ?? ''); ?>;
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const userMenu = document.getElementById('user-menu');
+        if (isLoggedIn) {
+            userMenu.innerHTML = `
+                <div class="dropdown">
+                    <i class="fa-solid fa-user"><button class="dropdown-button">&nbsp;&nbsp;${username}</button></i>
+                    <div class="dropdown-content">
+                        <a href="logout.php">Log Out</a>
+                    </div>
+                </div>
+            `;
+        }
+    });
+    </script>
+
 <main>
     <center>
         <div class="judul_ticket">
@@ -71,6 +109,8 @@ if ($result->num_rows > 0) {
     </center>
 </main>
 <footer>
+    <div class="footerContainer" id="foot"></div>
+    <a href="#" class="judul_lagi"><span>TiketQ</span></a>
     <div class="socialIcons">
         <a href=""><i class="fa-brands fa-facebook"></i></a>
         <a href=""><i class="fa-brands fa-instagram"></i></a>
@@ -81,7 +121,7 @@ if ($result->num_rows > 0) {
         <ul>
             <li><a href="">Home</a></li>
             <li><a href="">About</a></li>
-            <li><a href="">Contact Us</a></li>
+            <li><a href="#foot">Contact Us</a></li>
         </ul>
     </div>
 </footer>

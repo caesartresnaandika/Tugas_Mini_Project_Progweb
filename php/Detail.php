@@ -1,11 +1,30 @@
 <?php
+// Include database connection and start the session
 include "../php/koneksi.php";
 session_start();
+
+// Retrieve username from session if logged in, otherwise set to an empty string
 $username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
 $isLoggedIn = !empty($username);
 
+// Check if user is logged in by verifying user_id in session
+if (!isset($_SESSION['user_id'])) {
+    // If not logged in, alert the user and redirect to the login/signup page
+    echo "<script>alert('Please login to access this page.');
+    window.location.href='LoginSignUp.php';
+    </script>";
+    exit();
+}
+
+// Check for database connection error
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Get artist ID from GET request, default to 0 if not set
 $id_artis = isset($_GET['id_artis']) ? (int)$_GET['id_artis'] : 0;
 
+// Fetch concert details for the given artist ID
 $concert = null;
 $sql = "SELECT * FROM konser WHERE id_artis = $id_artis";
 if ($result = $conn->query($sql)) {
@@ -14,6 +33,7 @@ if ($result = $conn->query($sql)) {
     echo "Error fetching concert details: " . $conn->error;
 }
 
+// Fetch tickets for the given artist ID
 $tickets = null;
 $sql = "SELECT * FROM ticket WHERE id_artis = $id_artis";
 if ($tickets = $conn->query($sql)) {
@@ -21,6 +41,7 @@ if ($tickets = $conn->query($sql)) {
     echo "Error fetching tickets: " . $conn->error;
 }
 
+// Fetch detailed concert information for the given artist ID
 $detail_concerts = [];
 $sql = "SELECT * FROM detail_konser WHERE id_artis = $id_artis";
 if ($detail_result = $conn->query($sql)) {
@@ -33,7 +54,7 @@ if ($detail_result = $conn->query($sql)) {
 ?>
 
 <!DOCTYPE html>
-<html lang="eng">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>TicketQ</title>
@@ -43,17 +64,16 @@ if ($detail_result = $conn->query($sql)) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <!-- header section  starts-->
+    <!-- Header section starts -->
     <header>
         <a href="../php/Home2.php" class="judul"><span>TiketQ</span></a>
         <ul class="navlist">
-            <li><a href="../php/Home2.php">Rumah</a></li>
-            <li><a href="../php/ListKonser.php">List Konser</a></li>
-            <li><a href="#">Tentang</a></li>
-            <li><a href="#foot">Kontak</a></li>
+            <li><a href="../php/Home2.php">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#foot">Contact Us</a></li>
         </ul>
         <div class="gabung_kanan">
-            <form method="GET" action="../php/ListKonser.php">
+            <form method="GET" action="../php/Home2.php">
                 <div class="searchBox">
                     <input type="text" class="searchText" name="searchText" placeholder="Masukkan konser/artis/lokasi ...">
                     <button type="submit" class="searchBtn" id="searchButton">
@@ -69,9 +89,9 @@ if ($detail_result = $conn->query($sql)) {
             </div>
         </div>
     </header>
-    <!-- header section ends -->
+    <!-- Header section ends -->
 
-    <!-- login awal -->
+    <!-- User login check script -->
     <script>
     const isLoggedIn = <?php echo json_encode($isLoggedIn); ?>;
     const username = <?php echo json_encode($username); ?>;
@@ -83,7 +103,7 @@ if ($detail_result = $conn->query($sql)) {
                 <div class="dropdown">
                     <i class="fa-solid fa-user"><button class="dropdown-button">&nbsp;&nbsp;${username}</button></i>
                     <div class="dropdown-content">
-                        <a href="logout.php">Keluar</a>
+                        <a href="logout.php">Log Out</a>
                     </div>
                 </div>
             `;
@@ -135,7 +155,7 @@ if ($detail_result = $conn->query($sql)) {
                 <p>Seating Plan tidak tersedia</p>
             <?php endif; ?>
         </div>
-        <div class="deskripsi_konserr">
+        <div class="deskripsi_konser">
             <h1>Jadwal Konser</h1>
             <table class="stock">
                 <tr>
@@ -180,7 +200,7 @@ if ($detail_result = $conn->query($sql)) {
                     <tr><td colspan="4">No tickets available</td></tr>
                 <?php endif; ?>
             </table>
-            <button type="submit" class="buy-tickets-btn">Buy  Tickets  Now!</button>
+            <button type="submit" class="buy-tickets-btn">Buy Tickets Now!</button>
         </form>
         <div class="syarat">
             <h1>SYARAT & KETENTUAN</h1>
@@ -206,18 +226,19 @@ if ($detail_result = $conn->query($sql)) {
     </div>
     <div class="footernav">
         <ul>
-            <li><a href="../php/Home2.php">Rumah</a></li>
-            <li><a href="">List Konser</a></li>
-            <li><a href="">Tentang</a></li>
-            <li><a href="#foot">Kontak</a></li>
+            <li><a href="">Home</a></li>
+            <li><a href="">About</a></li>
+            <li><a href="#foot">Contact Us</a></li>
         </ul>
     </div>
 </footer>   
 <?php
+// Close the database connection
 $conn->close();
 ?>
 <script>
 
+// Validate ticket selection before form submission
 function validateTickets() {
     var quantities = document.querySelectorAll('input[name^="quantity"]');
     var total = 0;
